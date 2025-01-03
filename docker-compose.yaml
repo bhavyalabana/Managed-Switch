@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  serial-web:
+    build: .
+    ports:
+      - "5000:5000"
+    devices:
+      - "/dev:/dev"  # Mount all devices (you might want to be more selective in production)
+    privileged: true  # Required for serial port access
+    volumes:
+      - ./templates:/app/templates
+    restart: unless-stopped
